@@ -61,7 +61,7 @@ app.put('/upload/:filename', upload.single('file'), (req, res) => {
        file_name:`http://localhost:5000/images/${req.file.filename}`
    });
 });
-app.get('/',authController.protect,authController.restrict('admin'),  async (req, res) => {
+app.get('/users',authController.protect,authController.restrict('admin'),  async (req, res) => {
     const Students = await User.find();
     const a = res.send(Students);
 
