@@ -35,10 +35,10 @@ const storage=multer.diskStorage({
 
 const upload=multer({storage})
 app.use('/images', express.static('upload/images'))
-app.get('/',async (req, resp,next) => {
-       resp.send('welcome nk api ecom');
-       console.log("all product get");
-})
+// app.get('/',(req, resp,next) => {
+//        resp.send('welcome nk api ecom');
+//        console.log("all product get");
+// });
 app.post('/upload',upload.single('file'),(req,res)=>{
    console.log(req.body)
    console.log(req.file.filename)
@@ -61,7 +61,7 @@ app.put('/upload/:filename', upload.single('file'), (req, res) => {
        file_name:`http://localhost:5000/images/${req.file.filename}`
    });
 });
-app.get('/users',authController.protect,authController.restrict('admin'),  async (req, res) => {
+app.get('/',authController.protect,authController.restrict('admin'),  async (req, res) => {
     const Students = await User.find();
     const a = res.send(Students);
 
