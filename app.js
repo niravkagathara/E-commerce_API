@@ -35,7 +35,9 @@ const storage=multer.diskStorage({
 
 const upload=multer({storage})
 app.use('/images', express.static('upload/images'))
-
+app.get('/',(req,res)=>{
+   res.send('welcome nk api ecom');
+});
 app.post('/upload',upload.single('file'),(req,res)=>{
    console.log(req.body)
    console.log(req.file.filename)
@@ -43,7 +45,7 @@ app.post('/upload',upload.single('file'),(req,res)=>{
       success: 1,
       image_url: req.file.filename
   })
-})
+});
 
 app.put('/upload/:filename', upload.single('file'), (req, res) => {
    const { filename } = req.params;
